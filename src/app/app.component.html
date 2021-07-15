@@ -2,5 +2,29 @@
   <h1>Forms in Angular</h1>
 </mat-toolbar>
 
-<app-template-forms-example></app-template-forms-example>
-<app-reactive-forms-example></app-reactive-forms-example>
+<mat-tab-group>
+  <mat-tab label="Task">
+    <div id="task">
+      <p>Create a form that takes three input vaules:</p>
+      <ul>
+        <li>Name</li>
+        <li>Age</li>
+        <li>Birthdate</li>
+      </ul>
+      <p>Form should calculate real user's age in the background based on the birthdate.</p>
+      <p>Form submission is allowed only for:</p>
+      <ul>
+        <li>Names longer than 2 letters</li>
+        <li>Age above or equal to 18</li>
+      </ul>
+      <p>Submission shows form's payload in the dialog.</p>
+      <p>User can reset the form if and only if any changes were made.</p>
+    </div>
+  </mat-tab>
+  <mat-tab label="Template Driven">
+    <app-template-forms-example></app-template-forms-example>
+  </mat-tab>
+  <mat-tab label="Reactive">
+    <app-reactive-forms-example></app-reactive-forms-example>
+  </mat-tab>
+</mat-tab-group>
