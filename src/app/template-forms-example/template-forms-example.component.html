@@ -1,0 +1,45 @@
+<mat-card id="template-forms">
+  <form #exampleForm="ngForm" (ngSubmit)="submit()">
+    <mat-card-header>
+      <mat-card-title>Template Driven Form</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div>
+        <div>
+          <p>
+            <mat-form-field>
+              <mat-label>Name</mat-label>
+              <input matInput type="text" [(ngModel)]="example.name" name="name" required minlength="2">
+              <mat-hint>Real name of a real person</mat-hint>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Age</mat-label>
+              <input matInput type="number" [(ngModel)]="example.age" name="age" required min="18">
+              <mat-hint>Real age of a real person</mat-hint>
+            </mat-form-field>
+          </p>
+          <p>
+            <mat-form-field>
+              <mat-label>Birthdate</mat-label>
+              <input matInput [matDatepicker]="datepicker" (dateChange)="updateAge($event)">
+              <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
+              <mat-datepicker [startAt]="beginning" touchUi #datepicker>
+              </mat-datepicker>
+              <mat-hint>Real birthdate of a real person</mat-hint>
+            </mat-form-field>
+          </p>
+        </div>
+        <hr>
+        <h4>Real age: {{ageCalculation}}</h4>
+        <h4>Form preview:</h4>
+        <pre>{{example | json}}</pre>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!exampleForm.valid">Submit</button>
+      <button mat-raised-button color="warn" type="reset" [disabled]="exampleForm.pristine">Reset</button>
+    </mat-card-actions>
+  </form>
+</mat-card>
