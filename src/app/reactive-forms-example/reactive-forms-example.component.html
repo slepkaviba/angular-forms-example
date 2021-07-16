@@ -23,7 +23,9 @@
           <p>
             <mat-form-field>
               <mat-label>Birthdate</mat-label>
-              <input matInput [formControl]="birthdate" [matDatepicker]="datepicker">
+              <input matInput
+                     [matDatepicker]="datepicker"
+                     [formControl]="birthdate">
               <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
               <mat-datepicker touchUi #datepicker [startAt]="beginning">
               </mat-datepicker>
@@ -34,13 +36,15 @@
         <hr>
         <h4>Real age: {{ageCalculation | async}}</h4>
         <h4>Form preview:</h4>
-        <pre>{{exampleForm.value | json}}</pre>
+        <pre>{{exampleForm.valueChanges | async | json}}</pre>
         <hr>
       </div>
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" type="submit" [disabled]="!exampleForm.valid">Submit</button>
-      <button mat-raised-button color="warn" type="reset" [disabled]="exampleForm.pristine">Reset</button>
+      <button mat-raised-button color="warn" type="reset" [disabled]="exampleForm.pristine && !exampleForm.touched">
+        Reset
+      </button>
     </mat-card-actions>
   </form>
 </mat-card>

@@ -16,14 +16,16 @@
           <p>
             <mat-form-field>
               <mat-label>Age</mat-label>
-              <input matInput type="number" [(ngModel)]="example.age" name="age" required min="18">
+              <input matInput type="number" [(ngModel)]="example.age" name="age" required min="18" max="99">
               <mat-hint>Real age of a real person</mat-hint>
             </mat-form-field>
           </p>
           <p>
             <mat-form-field>
               <mat-label>Birthdate</mat-label>
-              <input matInput [matDatepicker]="datepicker" (dateChange)="updateAge($event)">
+              <input matInput
+                     [matDatepicker]="datepicker"
+                     (dateChange)="updateAge($event)">
               <mat-datepicker-toggle matSuffix [for]="datepicker"></mat-datepicker-toggle>
               <mat-datepicker [startAt]="beginning" touchUi #datepicker>
               </mat-datepicker>
@@ -40,7 +42,9 @@
     </mat-card-content>
     <mat-card-actions>
       <button mat-raised-button color="primary" type="submit" [disabled]="!exampleForm.valid">Submit</button>
-      <button mat-raised-button color="warn" type="reset" [disabled]="exampleForm.pristine">Reset</button>
+      <button mat-raised-button color="warn" type="reset" [disabled]="exampleForm.pristine && !exampleForm.touched">
+        Reset
+      </button>
     </mat-card-actions>
   </form>
 </mat-card>
